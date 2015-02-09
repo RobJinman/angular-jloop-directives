@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html data-ng-app="App">
+
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'></link>
+
+    <script type="text/javascript" src="../../../vendor/angular/angular.js"></script>
+    <script type="text/javascript" src="../../../vendor/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../../../vendor/jlUtil/dist/jlUtil.js"></script>
+    <script type="text/javascript" src="../../../vendor/jlScroll/dist/jlScroll.js"></script>
+    <script type="text/javascript" src="../../../src/jlDirectives.js"></script>
+    <script>
+      angular.module("App",["jlDirectives"])
+        .controller("util.offsets.test", ["$scope", "$log", function($scope, $log) {
+          $scope.insideY = 100;
+          $scope.relativeY = 100;
+
+          $scope.onClick = function() {
+            $scope.$apply();
+          };
+        }]);
+    </script>
+  </head>
+
+  <body data-ng-controller="util.offsets.test">
+    <button data-ng-click="onClick">Digest</button><br/>
+    <label>inside</label><input type="number" value="100" data-ng-model="insideY"></input>
+    <label>relative</label><input type="number" value="100" data-ng-model="relativeY"></input>
+    <div id="wrap1">
+      <div id="wrap2">
+        <hr class="line" id="line1"/>
+        <hr class="line" id="line2"/>
+        <hr class="line" id="line3"/>
+        <hr class="line" id="line4"/>
+        <hr class="line" id="line5"/>
+        <hr class="line" id="line6"/>
+        <hr class="line" id="line7"/>
+        <hr class="line" id="line8"/>
+        <hr class="line" id="line9"/>
+
+        <div id="thing1" jl-offset-y="{{ insideY }}" jl-offset-type='inside' jl-offset-element='#wrap1'></div>
+        <div id="thing2" jl-offset-y="{{ relativeY }}" jl-offset-type='relative' jl-offset-element='#wrap1'></div>
+      </div>
+    </div>
+
+    <div id='wrap3'>
+      <div id="thing3" jl-offset-y="{{ insideY }}" jl-offset-type='inside' jl-offset-element='window'></div>
+      <div id="thing4" jl-offset-y="{{ relativeY }}" jl-offset-type='relative' jl-offset-element='window'></div>
+    </div>
+  </body>
+</html>
+
