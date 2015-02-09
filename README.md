@@ -1,4 +1,4 @@
-#AngularJS jlScroll Module
+#AngularJS jlDirectives Module
 
 To get started, run
     npm install
